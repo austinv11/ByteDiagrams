@@ -14,7 +14,7 @@ BytesLabel = namedtuple("BytesLabel", ["length", "text"])
 class ByteDiagram:
 
     def __init__(self, labels=[]):
-        self.labels = labels
+        self.labels = list(labels)
 
     def add_label(self, text: str, length: int) -> "ByteDiagram":
         self.labels.append(BytesLabel(length, text))
