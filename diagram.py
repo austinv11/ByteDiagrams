@@ -34,7 +34,7 @@ class ByteDiagram:
             block = symbols['se'] + ((total_len-1) * (symbols['we'] + symbols['swe'])) + symbols['we'] + symbols['sw'] + "\n"
 
             # Header labels
-            if bytes_per_line >= 100:
+            if bytes_per_line > 100:
                 for i in range(bytes_per_line):
                     if i % 100 == 0:
                         block += symbols['ns'] + str((i // 100) % 10)
@@ -42,7 +42,7 @@ class ByteDiagram:
                         block += "  "
                 block += symbols['ns'] + "\n"
 
-            if bytes_per_line >= 10:
+            if bytes_per_line > 10:
                 for i in range(bytes_per_line):
                     if i % 10 == 0:
                         block += symbols['ns'] + str((i // 10) % 10)
