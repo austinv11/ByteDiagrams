@@ -23,7 +23,7 @@ class ByteDiagram:
     def total_byte_length(self) -> int:
         return sum([x.length for x in self.labels])
 
-    def export_diagram(self, bytes_per_line: int, offset: int = 0) -> List[str]:
+    def export_diagram(self, bytes_per_line: int, offset: int = 0, was_first_label_printed: bool = False) -> List[str]:
         assert bytes_per_line < 1000
 
         total_len = self.total_byte_length()
@@ -73,8 +73,13 @@ class ByteDiagram:
             line = 0
             while has_remaining:
                 any_remaining = False
+                is_first = True
                 for chunk in self.labels:
-                    curr_frag = chunk.text
+                    if is_first:
+                        is_first = False
+                        curr_frag = " " * len(chunk.text)
+                    else:
+                        curr_frag = chunk.text
                     frag_len = chunk.length + chunk.length - 1
                     pointer = line * frag_len
                     if len(curr_frag) < pointer:
