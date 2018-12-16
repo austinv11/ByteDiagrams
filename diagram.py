@@ -43,7 +43,7 @@ class ByteDiagram:
                     if j % 100 == 0:
                         block += symbols['ns'] + str((j // 100) % 10)
                     else:
-                        block += symbols['ns'] if i == 0 else " "
+                        block += (symbols['ns'] if i == 0 else " ")
                         block += " "
                 block += symbols['ns'] + "\n"
 
@@ -53,7 +53,8 @@ class ByteDiagram:
                     if j % 10 == 0:
                         block += symbols['ns'] + str((j // 10) % 10)
                     else:
-                        block += symbols['ns'] if i == 0 else " "
+                        print(f"yay {i} {j}")
+                        block += (symbols['ns'] if i == 0 else " ")
                         block += " "
                 block += symbols['ns'] + "\n"
 
