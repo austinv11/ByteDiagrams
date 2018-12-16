@@ -24,7 +24,9 @@ class ByteDiagram:
         return sum([x.length for x in self.labels])
 
     def export_diagram(self, bytes_per_line: int, offset: int = 0,
-                       was_first_label_printed: bool = False, byte_num_offset: int = 0) -> List[str]:  # Second row of vars are for internal use only
+                       byte_num_offset: int = 0) -> List[str]:  # Second row of vars are for internal use only
+        print(f"{bytes_per_line}; {offset}; {byte_num_offset}")
+         
         assert bytes_per_line < 1000
 
         total_len = self.total_byte_length()
@@ -115,21 +117,21 @@ class ByteDiagram:
             count = 0
             offset = 0
             curr_accumulation = list()
-            iterations = 0
+            iterations = 1
             for chunk in self.labels:
                 if count + chunk.length <= bytes_per_line:
                     curr_accumulation.append(chunk)
                     count += chunk.length
                     offset += chunk.length
                 else:
-                    iterations += 1
-                    blocks.append(ByteDiagram(curr_accumulation).export_diagram(bytes_per_line, offset, True, bytes_per_line * iterations)[0])
+                    blocks.append(ByteDiagram(curr_accumulation).export_diagram(bytes_per_line, offset, bytes_per_line * iterations)[0])
                     curr_accumulation.clear()
                     count = chunk.length
                     offset += chunk.length
                     curr_accumulation.append(chunk)
+                    iterations += 1
 
             if len(curr_accumulation) > 0:
-                blocks.append(ByteDiagram(curr_accumulation).export_diagram(bytes_per_line, offset - sum([x.length for x in curr_accumulation]), True, bytes_per_line * (iterations +1))[0])
+                blocks.append(ByteDiagram(curr_accumulation).export_diagram(bytes_per_line, offset - sum([x.length for x in curr_accumulation]), bytes_per_line * iterations)[0])
 
             return blocks
