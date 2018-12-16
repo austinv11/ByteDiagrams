@@ -36,23 +36,26 @@ class ByteDiagram:
             # Header labels
             if bytes_per_line > 100:
                 for i in range(bytes_per_line):
-                    if i % 100 == 0:
-                        block += symbols['ns'] + str((i // 100) % 10)
+                    j = i + offset
+                    if j % 100 == 0:
+                        block += symbols['ns'] + str((j // 100) % 10)
                     else:
                         block += "  "
                 block += symbols['ns'] + "\n"
 
             if bytes_per_line > 10:
                 for i in range(bytes_per_line):
-                    if i % 10 == 0:
-                        block += symbols['ns'] + str((i // 10) % 10)
+                    j = i + offset
+                    if j % 10 == 0:
+                        block += symbols['ns'] + str((j // 10) % 10)
                     else:
                         block += "  "
                 block += symbols['ns'] + "\n"
 
             block += symbols['ns']
             for i in range(bytes_per_line):
-                block += str((i + offset) % 10) + symbols['ns']
+                j = i + offset
+                block += str(j % 10) + symbols['ns']
             block += "\n"
 
             chunk_lengths = list([x.length for x in self.labels])
