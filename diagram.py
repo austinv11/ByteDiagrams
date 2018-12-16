@@ -76,13 +76,8 @@ class ByteDiagram:
             line = 0
             while has_remaining:
                 any_remaining = False
-                is_first = True
                 for chunk in self.labels:
-                    if is_first:
-                        is_first = False
-                        curr_frag = " " * len(chunk.text)
-                    else:
-                        curr_frag = chunk.text
+                    curr_frag = chunk.text
                     frag_len = chunk.length + chunk.length - 1
                     pointer = line * frag_len
                     if len(curr_frag) < pointer:
