@@ -24,9 +24,7 @@ class ByteDiagram:
         return sum([x.length for x in self.labels])
 
     def export_diagram(self, bytes_per_line: int, offset: int = 0,
-                       byte_num_offset: int = 0) -> List[str]:  # Second row of vars are for internal use only
-        print(f"{bytes_per_line}; {offset}; {byte_num_offset}")
-         
+                       byte_num_offset: int = 0) -> List[str]:  # Second row of vars are for internal use only         
         assert bytes_per_line < 1000
 
         total_len = self.total_byte_length()
@@ -53,7 +51,6 @@ class ByteDiagram:
                     if j % 10 == 0:
                         block += symbols['ns'] + str((j // 10) % 10)
                     else:
-                        print(f"yay {i} {j}")
                         block += (symbols['ns'] if i == 0 else " ")
                         block += " "
                 block += symbols['ns'] + "\n"
