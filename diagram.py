@@ -43,7 +43,8 @@ class ByteDiagram:
                     if j % 100 == 0:
                         block += symbols['ns'] + str((j // 100) % 10)
                     else:
-                        block += "  "
+                        block += symbols['ns'] if i == 0 else " "
+                        block += " "
                 block += symbols['ns'] + "\n"
 
             if bytes_per_line > 10:
@@ -52,7 +53,8 @@ class ByteDiagram:
                     if j % 10 == 0:
                         block += symbols['ns'] + str((j // 10) % 10)
                     else:
-                        block += "  "
+                        block += symbols['ns'] if i == 0 else " "
+                        block += " "
                 block += symbols['ns'] + "\n"
 
             block += symbols['ns']
