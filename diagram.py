@@ -117,7 +117,7 @@ class ByteDiagram:
             count = 0
             offset = 0
             curr_accumulation = list()
-            iterations = 1
+            iterations = 0
             for chunk in self.labels:
                 if count + chunk.length <= bytes_per_line:
                     curr_accumulation.append(chunk)
